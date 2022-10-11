@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('program_id');
-            $table->unsignedBigInteger('lecturer_id');
-            $table->string('name');
-            $table->date('start');
-            $table->date('end');
-            $table->timestamps();
+        Schema::table('groups', function (Blueprint $table){
+            $table->foreign('lecturer_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        //
     }
 };
