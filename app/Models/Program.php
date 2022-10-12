@@ -9,7 +9,7 @@ class Program extends Model
 {
     use HasFactory;
 
-    public function group(){
+    public function groups(){
         return $this->hasMany(Group::class);
     }
 }
