@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\GroupUser;
 use App\Models\Program;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class GroupController extends Controller
         $groups = Group::all();
         $programs = Program::all();
         $users = User::all();
-        return view("groups.index", ['groups' => $groups, 'courses' => $programs, 'users' => $users]);
+//        $groupStudents=GroupUser::all();
+        return view("groups.index", ['groups' => $groups, 'programs' => $programs, 'users' => $users]);
     }
 
     /**
@@ -29,7 +31,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -87,4 +89,13 @@ class GroupController extends Controller
     {
         //
     }
+
+    public function groupStudents($user_id){
+        $groups=Group::find($user_id);
+        $students=GroupUser::where('group_id', $user_id)->get();
+        $users=User::all();
+        return view('students.index', ['students'=>$students, 'users'=>$users, 'groups'=>$groups]);
+    }
+
+
 }

@@ -9,11 +9,11 @@ class Lecture extends Model
 {
     use HasFactory;
 
-    public function files(){
+    public function file(){
         return $this->hasMany(File::class);
     }
 
-    public function groups(){
+    public function group(){
         return $this->belongsTo(Group::class, 'group_id');
     }
 }
